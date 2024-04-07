@@ -22,4 +22,24 @@ function createGridOfSquareBoxes(numBoxes) {
 
 }
 
+function updateSquareColourOnHover(square) {
+
+    square.setAttribute("class", "box coloured");
+    
+}
+
+function listenForHoverOnSquares() {
+
+    const sqaures = document.querySelectorAll(".box");
+    console.log("Enter")
+
+    sqaures.forEach((square) => {
+        square.addEventListener("mousemove", () => {
+            console.log("WTFs")
+            updateSquareColourOnHover(square);
+        });
+    });
+}
+
 createGridOfSquareBoxes(16);
+listenForHoverOnSquares();
