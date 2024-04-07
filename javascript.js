@@ -29,7 +29,14 @@ function updateSquareColourOnHover(square) {
 }
 
 function updateGridSize() {
-    let size = prompt("Enter the szie for the length of the grid: ");
+    let size = parseInt(prompt("Enter the size for the length of the grid: "));   
+    
+
+    while (size > 100 | size <= 0 | Number.isNaN(size)) {
+
+        size = parseInt(prompt("Enter the size for the length of the grid. It must be between 1 - 100: "));
+
+    }
 
     const sqaures = document.querySelectorAll(".row");
     sqaures.forEach((square) => {
