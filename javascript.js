@@ -52,7 +52,8 @@ function addHoverEventToSquares() {
 
     sqaures.forEach((square) => {
         square.addEventListener("mousemove", () => {
-            updateSquareColourOnHover(square);
+            //updateSquareColourOnHover(square);
+            randomiseSquareColour(square);
         });
     });
 }
@@ -63,6 +64,16 @@ function addClickEventToButton() {
 
     button.addEventListener("click", updateGridSize);
 
+}
+
+function randomiseSquareColour(square) {
+
+    let red = Math.floor(Math.random() * 256) + 1;
+    let green = Math.floor(Math.random() * 256) + 1;
+    let blue= Math.floor(Math.random() * 256) + 1;
+
+    let backgroundColour = `background: rgba(${red},${green},${blue},1);`;
+    square.setAttribute("style", backgroundColour);
 }
 
 createGridOfSquareBoxes(16);
