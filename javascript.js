@@ -22,12 +22,6 @@ function createGridOfSquareBoxes(numBoxes) {
 
 }
 
-function updateSquareColourOnHover(square) {
-
-    square.setAttribute("class", "box coloured");
-    
-}
-
 function updateGridSize() {
     let size = parseInt(prompt("Enter the size for the length of the grid: "));   
     
@@ -51,8 +45,7 @@ function addHoverEventToSquares() {
     const sqaures = document.querySelectorAll(".box");
 
     sqaures.forEach((square) => {
-        square.addEventListener("mousemove", () => {
-            //updateSquareColourOnHover(square);
+        square.addEventListener("mouseenter", () => {
             randomiseSquareColour(square);
         });
     });
@@ -68,12 +61,29 @@ function addClickEventToButton() {
 
 function randomiseSquareColour(square) {
 
-    let red = Math.floor(Math.random() * 256) + 1;
-    let green = Math.floor(Math.random() * 256) + 1;
-    let blue= Math.floor(Math.random() * 256) + 1;
+    let currentColour = square.style.background;
 
-    let backgroundColour = `background: rgba(${red},${green},${blue},1);`;
-    square.setAttribute("style", backgroundColour);
+    if (currentColour == "") {
+        let red = Math.floor(Math.random() * 256) + 1;
+        let green = Math.floor(Math.random() * 256) + 1;
+        let blue= Math.floor(Math.random() * 256) + 1;
+
+        let backgroundColour = `background: rgb(${red},${green},${blue}); opacity: 0.1;`;
+        square.setAttribute("style", backgroundColour);
+
+    } else {
+
+        let currentOpacity = parseFloat(square.style.opacity)
+
+        if (currentOpacity == 1) {
+            ;
+        } else {
+            let newOpacity = currentOpacity + 0.1;
+            let newStyle= `background:${currentColour}; opacity:${newOpacity}`;
+            square.setAttribute("style", newStyle);
+        }
+    }
+
 }
 
 createGridOfSquareBoxes(16);
