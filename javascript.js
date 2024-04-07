@@ -28,18 +28,36 @@ function updateSquareColourOnHover(square) {
     
 }
 
-function listenForHoverOnSquares() {
+function updateGridSize() {
+    let size = prompt("Enter the szie for the length of the grid: ");
+
+    const sqaures = document.querySelectorAll(".row");
+    sqaures.forEach((square) => {
+        square.remove();
+    });
+    createGridOfSquareBoxes(size);
+    addHoverEventToSquares();
+}
+
+function addHoverEventToSquares() {
 
     const sqaures = document.querySelectorAll(".box");
-    console.log("Enter")
 
     sqaures.forEach((square) => {
         square.addEventListener("mousemove", () => {
-            console.log("WTFs")
             updateSquareColourOnHover(square);
         });
     });
 }
 
+function addClickEventToButton() {
+
+    const button = document.querySelector("#updateSize");
+
+    button.addEventListener("click", updateGridSize);
+
+}
+
 createGridOfSquareBoxes(16);
-listenForHoverOnSquares();
+addHoverEventToSquares();
+addClickEventToButton();
